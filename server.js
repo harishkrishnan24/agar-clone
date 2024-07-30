@@ -7,3 +7,5 @@ const expressServer = app.listen(9000);
 
 const socketio = require("socket.io");
 const io = socketio(expressServer);
+
+module.exports = { app, io };
