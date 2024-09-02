@@ -7,3 +7,5 @@ const init = async () => {
   orbs = initOrbs;
   draw();
 };
+
+socket.on("tick", (players) => {});
