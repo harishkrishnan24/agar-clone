@@ -14,15 +14,19 @@ const settings = {
   worldHeight: 500,
   defaultGenericOrbSize: 5,
 };
+const players = [];
 
 initGame();
 
 io.on("connect", (socket) => {
-  const playerName = "Test";
-  const playerConfig = new PlayerConfig(settings);
-  const playerData = new PlayerData(playerName, settings);
-  const player = new Player(socket.id, playerConfig, playerData);
-  socket.emit("init", { orbs });
+  socket.on("init", (playerObj, ackCallback) => {
+    const playerName = playerObj.playerName;
+    const playerConfig = new PlayerConfig(settings);
+    const playerData = new PlayerData(playerName, settings);
+    const player = new Player(socket.id, playerConfig, playerData);
+    players.push(player);
+    ackCallback(orbs);
+  });
 });
 
 function initGame() {
