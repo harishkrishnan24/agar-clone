@@ -10,6 +10,7 @@ const context = canvas.getContext("2d");
 canvas.height = wHeight;
 canvas.width = wWidth;
 const player = {};
+let orbs = [];
 
 window.addEventListener("load", () => {
   loginModal.show();
