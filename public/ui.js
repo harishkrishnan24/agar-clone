@@ -11,6 +11,7 @@ canvas.height = wHeight;
 canvas.width = wWidth;
 const player = {};
 let orbs = [];
+let players = [];
 
 window.addEventListener("load", () => {
   loginModal.show();

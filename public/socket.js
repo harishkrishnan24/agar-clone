@@ -8,4 +8,6 @@ const init = async () => {
   draw();
 };
 
-socket.on("tick", (players) => {});
+socket.on("tick", (playersArray) => {
+  players = playersArray;
+});
