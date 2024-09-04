@@ -1,5 +1,5 @@
-player.locX = Math.floor(500 * Math.random() + 10);
-player.locY = Math.floor(500 * Math.random() + 10);
+// player.locX = Math.floor(500 * Math.random() + 10);
+// player.locY = Math.floor(500 * Math.random() + 10);
 
 const draw = () => {
   context.setTransform(1, 0, 0, 1, 0, 0);
@@ -61,16 +61,6 @@ canvas.addEventListener("mousemove", (event) => {
     yVector = 1 - (angleDeg + 90) / 90;
   }
 
-  speed = 10;
-  xV = xVector;
-  yV = yVector;
-
-  if ((player.locX < 5 && xV < 0) || (player.locX > 500 && xV > 0)) {
-    player.locY -= speed * yV;
-  } else if ((player.locY < 5 && yV > 0) || (player.locY > 500 && yV < 0)) {
-    player.locX += speed * xV;
-  } else {
-    player.locX += speed * xV;
-    player.locY -= speed * yV;
-  }
+  player.xVector = xVector ?? 0.1;
+  player.yVector = yVector ?? 0.1;
 });
