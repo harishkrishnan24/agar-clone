@@ -10,6 +10,7 @@ const draw = () => {
   context.translate(camX, camY);
 
   players.forEach((p) => {
+    if (!p.playerData) return;
     context.beginPath();
     context.fillStyle = p.playerData.color;
     context.arc(

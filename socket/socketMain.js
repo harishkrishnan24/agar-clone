@@ -75,6 +75,7 @@ io.on("connect", (socket) => {
       };
 
       io.to("game").emit("orbSwitch", orbData);
+      io.to("game").emit("updateLeaderBoard", getLeaderBoard());
     }
 
     const absorbedData = checkForPlayerCollisions(
@@ -86,6 +87,7 @@ io.on("connect", (socket) => {
     );
     if (absorbedData) {
       io.to("game").emit("playerAbsorbed", absorbedData);
+      io.to("game").emit("updateLeaderBoard", getLeaderBoard());
     }
   });
 
@@ -100,4 +102,19 @@ function initGame() {
   for (let i = 0; i < settings.defaultNumberOfOrbs; i++) {
     orbs.push(new Orb(settings));
   }
+}
+
+function getLeaderBoard() {
+  const leaderBoardArray = players.map((currPlayer) => {
+    if (currPlayer.playerData) {
+      return {
+        name: currPlayer.playerData.name,
+        score: currPlayer.playerData.score,
+      };
+    } else {
+      return {};
+    }
+  });
+
+  return leaderBoardArray;
 }
